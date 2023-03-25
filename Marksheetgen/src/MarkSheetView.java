@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*; 
 
-public class MyFrame extends JFrame implements ActionListener{
+public class MarkSheetView extends JFrame implements ActionListener{
 	JLabel jlboot = new JLabel("Enter OOT Marks");     
     JLabel jlboop = new JLabel("Enter OOp Marks"); 
     JLabel jlbdb = new JLabel("Enter DB Marks");  
@@ -20,15 +20,17 @@ public class MyFrame extends JFrame implements ActionListener{
     JLabel jlbdiv = new JLabel("Division");    
     JLabel jlbres = new JLabel("Result");
     
-    JTextField jtftm = new JTextField("0.0");
-    JTextField jtftp = new JTextField("0.0");      
-    JTextField jtfdiv = new JTextField("");     
-    JTextField jtfres = new JTextField(""); 
-
-	public MyFrame(String title) {
+    JLabel jtftm = new JLabel("0.0");
+    JLabel jtftp = new JLabel("0.0");      
+    JLabel jtfdiv = new JLabel("");     
+    JLabel jtfres = new JLabel(""); 
+    
+    JLabel lbresp = new JLabel();
+    
+	public MarkSheetView(String title) {
 		setTitle(title);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 700);
+        setSize(600, 650);
         prepareGUI();
         setVisible(true);  
            
@@ -39,29 +41,44 @@ public class MyFrame extends JFrame implements ActionListener{
     	
         jtfres.setBounds(300,520,250, 40);
         jtfres.setHorizontalAlignment(SwingConstants.CENTER);
+//        jtfres.setEditable(false);
         jlbres.setBounds(30,520,250, 40);
+       
         jtfdiv.setBounds(300,450,250, 40);
         jtfdiv.setHorizontalAlignment(SwingConstants.CENTER);
+//        jtfdiv.setEditable(false);
         jlbdiv.setBounds(30,450,250, 40);
+        
         jtftp.setBounds(300,380,250, 40);
         jtftp.setHorizontalAlignment(SwingConstants.CENTER);
+//        jtftp.setEditable(false);
         jlbtp.setBounds(30,380,250, 40);
+        
         jtftm.setBounds(300,310,250, 40);
         jtftm.setHorizontalAlignment(SwingConstants.CENTER);
+//        jtftm.setEditable(false);
         jlbtm.setBounds(30,310,250, 40);
+        
         jbtnclose.setBounds(300,240,250, 40);
         jbtnclose.addActionListener(this);
         jbtngen.setBounds(30,240,250, 40);
         jbtngen.addActionListener(this);
+        
         jtfdb.setBounds(300,170,250, 40); 
         jtfdb.setHorizontalAlignment(SwingConstants.CENTER);
+        
         jtfoop.setBounds(300,100,250, 40);
         jtfoop.setHorizontalAlignment(SwingConstants.CENTER);
+        
         jtfoot.setBounds(300,30,250, 40);  
         jtfoot.setHorizontalAlignment(SwingConstants.CENTER);
+        
         jlbdb.setBounds(30,170,250, 40);  
         jlboop.setBounds(30,100,250, 40);  
-        jlboot.setBounds(30,30,250, 40);  
+        jlboot.setBounds(30,30,250, 40); 
+        
+        lbresp.setBounds(30,580,250, 40);
+        
     	window.add(jlboot);
     	window.add(jtfoot);
     	window.add(jlboop);
@@ -80,55 +97,10 @@ public class MyFrame extends JFrame implements ActionListener{
     	window.add(jtfdiv);
     	window.add(jlbres);
         window.add(jtfres);
+        window.add(lbresp);
     }
-	public static void main(String[] args) {
-		new MyFrame("Marksheet Generator");  
-	}
-	 public void actionPerformed(ActionEvent e) {
-	        
-	        // handle button click events
-	        if (e.getSource() == jbtngen) {
-	            float num1 = Float.parseFloat(jtfoot.getText());
-	            float num2 = Float.parseFloat(jtfoop.getText());
-	            float num3 = Float.parseFloat(jtfdb.getText());
-	            String division = "";
-                String result = "";
-                float total = 0;
-	            float percentage = 0;
-	            total = num1 + num2 + num3;
-                percentage = (float) (total / 3.0);
-				if (num1 > 100 || num2 >100 || num3 >100) {
-	                 
-	                
-	            } else if (num1 < 40 || num2 < 40 || num3 < 40) {
-	            	division = "Fail";
-	            	result = "Fail";
-				}
-	            
-	            else {
-	                
-	                
-	                if (percentage >= 60) {
-	                    division = "First Division";
-	                } else if (percentage >= 45) {
-	                    division = "Second Division";
-	                } else if (percentage >= 33) {
-	                    division = "Third Division";
-	                } 
-	                result ="Pass";
-	                
-	            }
-	            jtftm.setText(String.format("%.1f", total));
-                jtftp.setText(String.format("%.2f",percentage));
-                jtfdiv.setText(division);
-                jtfres.setText(result);
-	            
-	        } else if (e.getSource() == jbtnclose) {
-	            
-	            System.out.println("Button 2 clicked!");
-	        }
-	    }
 
+	
 }
 
 
